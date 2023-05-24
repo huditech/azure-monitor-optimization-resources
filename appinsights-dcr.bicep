@@ -1,12 +1,12 @@
 param location string = resourceGroup().location
+param workspaceName string
 
 resource workspace 'Microsoft.operationalinsights/workspaces@2022-10-01' existing = {
-  name: 'b2e03e4c-e01a-4d40-8c68-d50f132dea42-defaultresourcegroup-weu'
-  scope: resourceGroup('defaultresourcegroup-weu')
+  name: workspaceName
 }
 
 resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
-  name: 'data-reduction-rule'
+  name: 'app-insights-data-reduction-rule'
   location: location
   kind: 'WorkspaceTransforms'
   properties: {

@@ -5,20 +5,23 @@
     "_generator": {
       "name": "bicep",
       "version": "0.17.1.54307",
-      "templateHash": "3963922979371010987"
+      "templateHash": "6201935052330121763"
     }
   },
   "parameters": {
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]"
+    },
+    "workspaceName": {
+      "type": "string"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Insights/dataCollectionRules",
       "apiVersion": "2022-06-01",
-      "name": "data-reduction-rule",
+      "name": "app-insights-data-reduction-rule",
       "location": "[parameters('location')]",
       "kind": "WorkspaceTransforms",
       "properties": {
@@ -27,7 +30,7 @@
           "logAnalytics": [
             {
               "name": "workspace",
-              "workspaceResourceId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, 'defaultresourcegroup-weu'), 'Microsoft.OperationalInsights/workspaces', 'b2e03e4c-e01a-4d40-8c68-d50f132dea42-defaultresourcegroup-weu')]"
+              "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
             }
           ]
         },
