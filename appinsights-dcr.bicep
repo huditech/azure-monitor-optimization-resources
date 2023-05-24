@@ -6,7 +6,7 @@ resource workspace 'Microsoft.operationalinsights/workspaces@2022-10-01' existin
 }
 
 resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
-  name: 'app-insights-data-reduction-rule'
+  name: 'app-insights-data-collection-rule'
   location: location
   kind: 'WorkspaceTransforms'
   properties: {
